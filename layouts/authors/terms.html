@@ -1,0 +1,22 @@
+{{ define "header" }}
+<p>Articles <i class="inhabitu-quill-pen icon"></i> written by</p>
+<p class="title is-1">{{ len .Data.Terms }} {{ if eq (len .Data.Terms) 1 }}{{ .Data.Singular | title }}{{ else }}{{ .Data.Plural | title }}{{ end }}</p>
+{{ end }}
+
+{{ define "main" }}
+{{ $bit := div (len (index .Data.Terms.ByCount 0).Pages) 3.0 }}
+<section class="section">
+    <div class="content container">
+        {{ if .Data.Terms }}
+        <p>{{ .Site.Title }} articles have been written by the following authors:</p>
+        <div class="tags">
+            {{ range .Data.Terms.Alphabetical }}
+            <a class="tag is-rounded{{ if gt .Count (mul $bit 2) }} is-large{{ else }}{{ if gt .Count $bit }} is-medium{{ end }}{{ end }}" href="{{ "/authors" | relURL }}/{{ .Term | urlize }}">{{ .Term }}</a>
+            {{ end }}
+        </div>
+        {{ else }}
+        {{ partial "message-info" "No articles have been tagged yet." }}
+        {{ end }}
+    </div>
+</section>
+{{ end }}

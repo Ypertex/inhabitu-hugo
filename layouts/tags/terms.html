@@ -1,0 +1,22 @@
+{{ define "header" }}
+<p>Articles <i class="inhabitu-tags icon"></i> labeled with</p>
+<p class="title is-1">{{ len .Data.Terms }} {{ .Title }}</p>
+{{ end }}
+
+{{ define "main" }}
+{{ $bit := div (len (index .Data.Terms.ByCount 0).Pages) 3.0 }}
+<section class="section">
+    <div class="content container">
+        {{ if .Data.Terms }}
+        <p>{{ .Site.Title }} articles have been labeled with the following tags:</p>
+        <div class="tags">
+            {{ range .Data.Terms.Alphabetical }}
+            <a class="tag is-rounded{{ if gt .Count (mul $bit 2) }} is-large{{ else }}{{ if gt .Count $bit }} is-medium{{ end }}{{ end }}" href="{{ "/tags" | relURL }}/{{ .Term | urlize }}">{{ .Term }}</a>
+            {{ end }}
+        </div>
+        {{ else }}
+        {{ partial "message-info" "No articles have been tagged yet." }}
+        {{ end }}
+    </div>
+</section>
+{{ end }}

@@ -1,0 +1,57 @@
+{{ define "header" }}
+<p class="title is-1 is-spaced">{{ if .Site.Params.mainLogo }}<img src="{{ "media/logos/" | relURL }}{{ .Site.Params.mainLogo }}" class="inhabitu-logo" alt="{{ .Site.Title }}" title="{{ .Site.Title }}">{{ else }}{{ .Site.Title }}{{ end }}</p>
+{{ with .Site.Params.Description }}
+<p class="subtitle is-3">{{ . }}</p>
+{{ end }}
+{{ end }}
+
+{{ define "main" }}
+{{ $paginator := .Paginate (where .Data.Pages "Section" "articles") }}
+{{ if $paginator.Pages }}
+{{ if eq $paginator.PageNumber 1 }}
+{{ range first 1 $paginator.Pages }}
+<section class="section">
+    <div class="content container">
+        <h1 class="title is-2">{{ .Title }}</h1>
+        {{ partial "article" . }}
+    </div>
+</section>
+{{ partial "article-share" . }}
+{{ end }}
+{{ if gt $paginator.Pages 1 }}
+<section class="section">
+    <div class="content container">
+        {{ range $index, $page := after 1 $paginator.Pages }}
+        {{ if gt $index 0 }}
+        <hr>
+        {{ end }}
+        {{ partial "article-index" . }}
+        {{ end }}
+    </div>
+</section>
+{{ end }}
+{{ else }}
+<section class="section">
+    <div class="content container">
+        {{ range $index, $page := $paginator.Pages }}
+        {{ if gt $index 0 }}
+        <hr>
+        {{ end }}
+        {{ partial "article-index" . }}
+        {{ end }}
+    </div>
+</section>
+{{ end }}
+<section class="inhabitu-emphasize section">
+    <div class="content container">
+        {{ partial "pagination" . }}
+    </div>
+</section>
+{{ else }}
+<section class="section">
+    <div class="content container">
+        {{ partial "message-info" "No articles have been published yet." }}
+    </div>
+</section>
+    {{ end }}
+{{ end }}

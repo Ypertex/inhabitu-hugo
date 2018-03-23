@@ -1,0 +1,41 @@
+{{ define "header" }}
+<p>{{ len .Data.Pages }} article{{ if ne (len .Data.Pages) 1 }}s{{ end }} <i class="inhabitu-tags icon"></i> tagged with</p>
+<p class="title is-1">{{ .Title }}</p>
+{{ end }}
+
+{{ define "main" }}
+{{ $tag := (index .Site.Data.tags .Title) }}
+<section class="section">
+    <div class="content container">
+        <span class="heading">About the tag</span>
+        <div class="inhabitu-overflow-bottom">
+            <div class="card">
+                {{ with $tag.cover }}
+                <div class="card-image">
+                    <img class="image" src="{{ "media/tags/" | relURL }}{{ . }}">
+                </div>
+                {{ end }}
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-content">
+                            <strong>{{ .Title }}</strong>
+                            {{ with $tag.description }}<p>{{ . }}</p>{{ end }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ range $index, $page := .Paginator.Pages }}
+        {{ if gt $index 0 }}
+        <hr>
+        {{ end }}
+        {{ partial "article-index" . }}
+        {{ end }}
+    </div>
+</section>
+<section class="inhabitu-emphasize section">
+    <div class="content container">
+        {{ partial "pagination" . }}
+    </div>
+</section>    
+{{ end }}

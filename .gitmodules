@@ -1,0 +1,3 @@
+[submodule "inhabitu-scss"]
+	path = inhabitu-scss
+	url = https://github.com/Ypertex/inhabitu-scss.git

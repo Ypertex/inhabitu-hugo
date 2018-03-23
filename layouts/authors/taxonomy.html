@@ -1,0 +1,53 @@
+{{ define "header" }}
+<p>{{ len .Data.Pages }} article{{ if ne (len .Data.Pages) 1 }}s{{ end }} <i class="inhabitu-quill-pen icon"></i> written by</p>
+<p class="title is-1">{{ .Title }}</p>
+{{ end }}
+
+{{ define "main" }}
+{{ $author := (index .Site.Data.authors .Title) }}
+<section class="section">
+    <div class="content container">
+        <span class="heading">About the author</span>
+        <div class="inhabitu-overflow-bottom">
+            <div class="card">
+                {{ with $author.cover }}
+                <div class="card-image">
+                    <img class="image" src="{{ "media/authors/" | relURL }}{{ . }}">
+                </div>
+                {{ end }}
+                <div class="card-content">
+                    <div class="media">
+                        {{ with $author.image }}
+                        <img class="media-left image is-64x64 inhabitu-author" src="{{ "media/authors/" | relURL }}{{ . }}">
+                        {{ end }}
+                        <div class="media-content">
+                            <strong>{{ .Title }}</strong>
+                            {{ with $author.location }}<span class="is-size-7"><i class="inhabitu-pin icon"></i>{{ . }}</span>{{ end }}
+                            {{ with $author.description }}<p>{{ . }}</p>{{ end }}
+                        </div>
+                    </div>
+                </div>
+                {{ if or $author.twitter $author.github }}
+                <footer class="card-footer">
+                    {{ with $author.twitter }}<a class="card-footer-item" href="https://twitter.com/{{ . }}"><i class="inhabitu-twitter icon"></i></a>{{ end }}
+                    {{ with $author.github }}<a class="card-footer-item" href="https://github.com/{{ . }}"><i class="inhabitu-github icon"></i></a>{{ end }}
+                </footer>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+    <div class="content container">
+        {{ range $index, $page := .Paginator.Pages }}
+        {{ if gt $index 0 }}
+        <hr>
+        {{ end }}
+        {{ partial "article-index" . }}
+        {{ end }}
+    </div>
+</section>
+<section class="inhabitu-emphasize section">
+    <div class="content container">
+        {{ partial "pagination" . }}
+    </div>
+</section>    
+{{ end }}

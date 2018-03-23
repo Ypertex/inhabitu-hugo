@@ -1,0 +1,17 @@
+name = "Inhabitu Hugo"
+license = "MIT"
+licenselink = "https://github.com/ypertex/inhabitu-hugo/blob/master/LICENSE.md"
+description = "Single-column theme for the Hugo publishing platform"
+homepage = "https://github.com/ypertex/inhabitu-hugo"
+tags = []
+features = []
+min_version = "0.37.1"
+
+[author]
+name = "Ypertex"
+homepage = "https://github.com/ypertex"
+
+[original]
+name = "Inhabitu Ghost"
+homepage = "https://github.com/ypertex/inhabitu-ghost"
+repo = "https://github.com/ypertex/inhabitu-gost"

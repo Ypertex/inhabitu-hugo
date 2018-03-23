@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ if not .IsHome }}{{ .Page.Title }} · {{ end }}{{ .Site.Title }}</title>
+    {{ with .Site.Params.Description }}<meta name="description" content="{{ . }}">{{ end }}
+    {{ .Hugo.Generator }}
+    <link rel="shortcut icon" href="">
+    <link rel="stylesheet" type="text/css" href="{{ "inhabitu.css" | relURL }}">
+</head>
+<body>
+    <header class="hero is-primary is-bold">
+        <div class="hero-head">
+            <nav class="navbar">
+                <div class="container">
+                    <div class="navbar-brand">
+                        <a href="{{ .Site.BaseURL | relURL }}" class="navbar-item is-active">{{ with .Site.Params.navLogo }}<img class="inhabitu-navbar-logo" src="{{ "media/logos/" | relURL }}{{ . }}"> {{ end }}{{ .Site.Title }}</a>
+                    </div>
+                    <div class="navbar-menu is-mobile">
+                        <div class="navbar-end">
+                            {{ with .Site.Params.Twitter }}<a class="navbar-item" href="https://twitter.com/{{ . }}" title="Twitter"><i class="inhabitu-twitter icon"></i></a>{{ end }}
+                            {{ with .Site.Params.Github }}<a class="navbar-item" href="https://github.com/{{ . }}" title="Github"><i class="inhabitu-github icon"></i></a>{{ end }}
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                {{ block "header" . }}{{ end }}
+            </div>
+        </div>
+    </header>
+    <main>
+        {{ block "main" . }}{{ end }}
+    </main>
+    <footer class="footer">
+        <div class="content container has-text-centered">
+            <div class="columns is-centered">
+                {{ with .Site.Params.Twitter }}
+                <div class="column is-narrow">
+                    <a href="https://twitter.com/{{ . }}"><i class="inhabitu-twitter icon"></i>Twitter</a>
+                </div>
+                {{ end }}
+                {{ with .Site.Params.Github }}
+                <div class="column is-narrow">
+                    <a href="https://github.com/{{ . }}"><i class="inhabitu-github icon"></i>Github</a>
+                </div>
+                {{ end }}
+                <div class="column is-narrow">
+                    <a href="{{ .Site.RSSLink | relURL }}" title="RSS"><i class="inhabitu-rss icon"></i>RSS</a>
+                </div>
+            </div>
+            <p class="is-size-7">Copyright © {{ .Site.LastChange.Format "2006" }} <a href="{{ .Site.BaseURL | relURL }}">{{ .Site.Title }}</a>{{ with .Site.Copyright }} · {{ . }}{{ end }}{{ if .Site.Params.License }}<br>
+                Original content released under the {{ if .Site.Params.LicenseURL }}<a href="{{ .Site.Params.LicenseURL }}">{{ .Site.Params.License }}</a>{{ else }}{{ .Site.Params.License }}{{ end }}{{ end }}</p>
+        </div>
+    </footer>
+</body>
+</html>
