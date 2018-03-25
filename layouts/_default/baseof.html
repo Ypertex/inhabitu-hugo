@@ -7,8 +7,8 @@
     <title>{{ if not .IsHome }}{{ .Page.Title }} · {{ end }}{{ .Site.Title }}</title>
     {{ with .Site.Params.Description }}<meta name="description" content="{{ . }}">{{ end }}
     {{ .Hugo.Generator }}
-    <link rel="shortcut icon" href="">
-    <link rel="stylesheet" type="text/css" href="{{ "inhabitu.css" | relURL }}">
+    <link rel="shortcut icon" href="{{ "favicon.ico" | relURL}}">
+    <link rel="stylesheet" type="text/css" href="{{ "inhabitu.css" | relURL}}">
 </head>
 <body>
     <header class="hero is-primary is-bold">

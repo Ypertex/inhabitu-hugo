@@ -1,6 +1,6 @@
 {{ define "header" }}
 <p>Articles <i class="inhabitu-tags icon"></i> labeled with</p>
-<p class="title is-1">{{ len .Data.Terms }} {{ .Title }}</p>
+<p class="title is-1">{{ len .Data.Terms }} Tag{{ if ne (len .Data.Terms ) 1 }}s{{ end }}</p>
 {{ end }}
 
 {{ define "main" }}

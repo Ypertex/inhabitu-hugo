@@ -1,6 +1,6 @@
 {{ define "header" }}
 <p>{{ len .Data.Pages }} published</p>
-<p class="title is-1">Articles</p>
+<p class="title is-1">Article{{ if ne (len .Data.Pages) 1 }}s{{ end }}</p>
 {{ end }}
 
 {{ define "main" }}

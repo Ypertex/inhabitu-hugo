@@ -13,14 +13,14 @@
 <section class="section">
     <div class="content container">
         {{ with .NextInSection }}
-        <span class="heading">Previous article</span>
+        <span class="heading">Next article</span>
         {{ partial "article-index" . }}
         {{ end }}
         {{ if and .NextInSection .PrevInSection }}
         <hr>
         {{ end }}
         {{ with .PrevInSection }}
-        <span class="heading">Next article</span>
+        <span class="heading">Previous article</span>
         {{ partial "article-index" . }}
         {{ end }}
     </div>
