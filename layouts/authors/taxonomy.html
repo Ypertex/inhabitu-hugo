@@ -22,8 +22,8 @@
                         {{ end }}
                         <div class="media-content">
                             <strong>{{ .Title }}</strong>
-                            {{ with $author.location }}<span class="is-size-7"><i class="inhabitu-pin icon"></i>{{ . }}</span>{{ end }}
                             {{ with $author.description }}<p>{{ . }}</p>{{ end }}
+                            {{ with $author.location }}<p class="is-size-7"><i class="inhabitu-pin icon"></i>{{ . }}</p>{{ end }}
                         </div>
                     </div>
                 </div>
