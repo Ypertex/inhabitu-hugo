@@ -20,6 +20,7 @@
                         <div class="media-content">
                             <strong>{{ .Title }}</strong>
                             {{ with $tag.description }}<p>{{ . }}</p>{{ end }}
+                            {{ if $tag.coverAttribution }}<p class="is-size-7 has-text-right">Image: {{ with $tag.coverAttributionURL }}<a href="{{ . }}">{{ end }}{{ $tag.coverAttribution }}</a></p>{{ end }}
                         </div>
                     </div>
                 </div>
