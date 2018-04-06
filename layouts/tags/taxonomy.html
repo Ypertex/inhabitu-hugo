@@ -1,3 +1,8 @@
+{{ define "social-media-meta" }}
+{{ with (index .Site.Data.tags .Title).description }}<meta property="og:description" content="{{ . }}" />{{ end }}
+{{ with (index .Site.Data.tags .Title).cover }}<meta property="og:image" content="{{ "/media/tags/" | absURL }}{{ . }}" />{{ end }}
+{{ end }}
+
 {{ define "header" }}
 <p>{{ len .Data.Pages }} article{{ if ne (len .Data.Pages) 1 }}s{{ end }} <i class="inhabitu-tags icon"></i> tagged with</p>
 <p class="title is-1">{{ .Title }}</p>

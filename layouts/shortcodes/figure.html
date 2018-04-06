@@ -1,0 +1,4 @@
+<figure>
+    <img src="{{ .Get "src" | relURL }}"{{ with .Get "caption"}} alt="{{ . }}"{{ end }}{{ with .Get "title"}} title="{{ . }}"{{ end }}{{ with .Get "width" }} width="{{ . }}"{{ end }}{{ with .Get "height" }} height="{{ . }}"{{ end }}>
+    {{ with .Inner }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
+</figure>

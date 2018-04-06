@@ -9,17 +9,29 @@
     {{ .Hugo.Generator }}
     <link rel="shortcut icon" href="{{ "favicon.ico" | relURL}}">
     <link rel="stylesheet" type="text/css" href="{{ "inhabitu.css" | relURL}}">
+    <meta property="og:url" content="{{ .URL | absURL }}" />
+    <meta property="og:title" content="{{ if not .IsHome }}{{ .Page.Title }} · {{ end }}{{ .Site.Title }}" />
+    {{ block "social-media-meta" . }}
+    {{ with .Site.Params.description }}<meta property="og:description" content="{{ . }}" />{{ end }}
+    {{ with .Site.Params.cover }}<meta property="og:image" content="{{ "/media/" | absURL }}{{ . }}" />{{ end }}
+    {{ end }}
+    <meta name="twitter:card" content="summary_large_image" />
+    {{ with .Site.Params.twitter }}<meta name="twitter:site" content="@{{ . }}" />{{ end }}
+    {{ if .Params.authors }}{{ with (index .Site.Data.authors .Params.authors).twitter }}<meta name="twitter:creator" content="@{{ . }}" />{{ end }}{{ end }}
 </head>
 <body>
-    <header class="hero is-primary is-bold">
+    <header class="hero is-primary">
         <div class="hero-head">
             <nav class="navbar">
                 <div class="container">
                     <div class="navbar-brand">
-                        <a href="{{ .Site.BaseURL | relURL }}" class="navbar-item is-active">{{ with .Site.Params.navLogo }}<img class="inhabitu-navbar-logo" src="{{ "media/logos/" | relURL }}{{ . }}"> {{ end }}{{ .Site.Title }}</a>
+                        <a href="{{ .Site.BaseURL | relURL }}" class="navbar-item{{ with .IsHome }} is-active{{ end }}">{{ with .Site.Params.navLogo }}<img class="inhabitu-navbar-logo" src="{{ "media/logos/" | relURL }}{{ . }}"> {{ end }}{{ .Site.Title }}</a>
                     </div>
                     <div class="navbar-menu">
                         <div class="navbar-end">
+                            <a class="navbar-item{{ if eq .URL "/articles/" }} is-active{{ end }}" href="{{ "/articles/" | relURL }}">Articles</a>
+                            <a class="navbar-item{{ if eq .URL "/tags/" }} is-active{{ end }}" href="{{ "/tags/" | relURL }}">Tags</a>
+                            <a class="navbar-item{{ if eq .URL "/authors/" }} is-active{{ end }}" href="{{ "/authors/" | relURL }}">Authors</a>
                             {{ with .Site.Params.Twitter }}<a class="navbar-item" href="https://twitter.com/{{ . }}" title="Twitter"><i class="inhabitu-twitter icon"></i></a>{{ end }}
                             {{ with .Site.Params.Github }}<a class="navbar-item" href="https://github.com/{{ . }}" title="Github"><i class="inhabitu-github icon"></i></a>{{ end }}
                         </div>
