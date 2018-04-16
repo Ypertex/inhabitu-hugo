@@ -34,6 +34,7 @@
                 </div>
                 {{ if or $author.twitter $author.github }}
                 <footer class="card-footer">
+                    {{ with $author.twitter }}<a class="card-footer-item" href="https://linkedin.com/in/{{ . }}"><i class="inhabitu-linkedin icon"></i></a>{{ end }}
                     {{ with $author.twitter }}<a class="card-footer-item" href="https://twitter.com/{{ . }}"><i class="inhabitu-twitter icon"></i></a>{{ end }}
                     {{ with $author.github }}<a class="card-footer-item" href="https://github.com/{{ . }}"><i class="inhabitu-github icon"></i></a>{{ end }}
                 </footer>
