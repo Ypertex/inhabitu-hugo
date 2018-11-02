@@ -66,7 +66,7 @@
                 </div>
             </div>
             <p class="is-size-7"><a href="/privacy/">Privacy Policy</a></p>
-            <p class="is-size-7">Copyright © {{ .Site.LastChange.Format "2006" }} <a href="{{ .Site.BaseURL | relURL }}">{{ .Site.Title }}</a>{{ with .Site.Copyright }} · {{ . }}{{ end }}{{ if .Site.Params.License }}<br>
+            <p class="is-size-7">Copyright © 2017-{{ .Site.LastChange.Format "2006" }} <a href="{{ .Site.BaseURL | relURL }}">{{ .Site.Title }}</a>{{ with .Site.Copyright }} · {{ . }}{{ end }}{{ if .Site.Params.License }}<br>
                 Original content released under the {{ if .Site.Params.LicenseURL }}<a href="{{ .Site.Params.LicenseURL }}">{{ .Site.Params.License }}</a>{{ else }}{{ .Site.Params.License }}{{ end }}{{ end }}</p>
         </div>
     </footer>
