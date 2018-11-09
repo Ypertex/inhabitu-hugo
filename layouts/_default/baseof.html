@@ -7,8 +7,8 @@
     <title>{{ if not .IsHome }}{{ .Page.Title }} · {{ end }}{{ .Site.Title }}</title>
     {{ with .Site.Params.Description }}<meta name="description" content="{{ . }}">{{ end }}
     {{ .Hugo.Generator }}
-    <link rel="shortcut icon" href="{{ "favicon.ico" | relURL}}">
-    <link rel="stylesheet" type="text/css" href="{{ "inhabitu.css" | relURL}}">
+    <link rel="shortcut icon" href="{{ "favicon.ico" | relURL }}">
+    <link rel="stylesheet" type="text/css" href="{{ "inhabitu.css" | relURL }}">
     <meta property="og:url" content="{{ .URL | absURL }}" />
     <meta property="og:title" content="{{ if not .IsHome }}{{ .Page.Title }} · {{ end }}{{ .Site.Title }}" />
     {{ block "social-media-meta" . }}
@@ -26,12 +26,15 @@
                 <div class="container">
                     <div class="navbar-brand">
                         <a href="{{ .Site.BaseURL | relURL }}" class="navbar-item{{ with .IsHome }} is-active{{ end }}">{{ with .Site.Params.navLogo }}<img class="inhabitu-navbar-logo" src="{{ "media/logos/" | relURL }}{{ . }}"> {{ end }}{{ .Site.Title }}</a>
+                        <a class="navbar-burger" data-target="menu"><span></span><span></span><span></span></a>
                     </div>
-                    <div class="navbar-menu">
+                    <div class="navbar-menu" id="menu">
                         <div class="navbar-end">
-                            <a class="navbar-item{{ if eq .URL "/articles/" }} is-active{{ end }}" href="{{ "/articles/" | relURL }}">Articles</a>
-                            <a class="navbar-item{{ if eq .URL "/tags/" }} is-active{{ end }}" href="{{ "/tags/" | relURL }}">Tags</a>
-                            <a class="navbar-item{{ if eq .URL "/authors/" }} is-active{{ end }}" href="{{ "/authors/" | relURL }}">Authors</a>
+                            {{ range .Site.Menus.main }}
+                            {{ end }}
+                            <a class="navbar-item{{ if in .URL "/articles/" }} is-active{{ end }}" href="{{ "/articles/" | relURL }}">Articles</a>
+                            <a class="navbar-item{{ if in .URL "/tags/" }} is-active{{ end }}" href="{{ "/tags/" | relURL }}">Tags</a>
+                            <a class="navbar-item{{ if in .URL "/authors/" }} is-active{{ end }}" href="{{ "/authors/" | relURL }}">Authors</a>
                             {{ with .Site.Params.Twitter }}<a class="navbar-item" href="https://twitter.com/{{ . }}" title="Twitter"><i class="inhabitu-twitter icon"></i></a>{{ end }}
                             {{ with .Site.Params.Github }}<a class="navbar-item" href="https://github.com/{{ . }}" title="Github"><i class="inhabitu-github icon"></i></a>{{ end }}
                         </div>
@@ -70,5 +73,6 @@
                 Original content released under the {{ if .Site.Params.LicenseURL }}<a href="{{ .Site.Params.LicenseURL }}">{{ .Site.Params.License }}</a>{{ else }}{{ .Site.Params.License }}{{ end }}{{ end }}</p>
         </div>
     </footer>
+    <script type="text/javascript" src="{{ "inhabitu.js" | relURL }}"></script>
 </body>
 </html>
