@@ -1,42 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ if not .IsHome }}{{ .Page.Title }} · {{ end }}{{ .Site.Title }}</title>
-    {{ with .Site.Params.Description }}<meta name="description" content="{{ . }}">{{ end }}
+    {{ with .Site.Params.Description }}
+    <meta name="description" content="{{ . }}">{{ end }}
     {{ .Hugo.Generator }}
     <link rel="shortcut icon" href="{{ "favicon.ico" | relURL }}">
-    <link rel="stylesheet" type="text/css" href="{{ "inhabitu.css" | relURL }}">
+    {{ $style := resources.Get "inhabitu-scss/inhabitu.scss" | toCSS }}
+    <link rel="stylesheet" type="text/css" href="{{ $style.RelPermalink }}">
     <meta property="og:url" content="{{ .URL | absURL }}" />
     <meta property="og:title" content="{{ if not .IsHome }}{{ .Page.Title }} · {{ end }}{{ .Site.Title }}" />
     {{ block "social-media-meta" . }}
-    {{ with .Site.Params.description }}<meta property="og:description" content="{{ . }}" />{{ end }}
-    {{ with .Site.Params.cover }}<meta property="og:image" content="{{ "/media/" | absURL }}{{ . }}" />{{ end }}
+    {{ with .Site.Params.description }}
+    <meta property="og:description" content="{{ . }}" />{{ end }}
+    {{ with .Site.Params.cover }}
+    <meta property="og:image" content="{{ "/media/" | absURL }}{{ . }}" />{{ end }}
     {{ end }}
     <meta name="twitter:card" content="summary_large_image" />
-    {{ with .Site.Params.twitter }}<meta name="twitter:site" content="@{{ . }}" />{{ end }}
-    {{ if .Params.authors }}{{ with (index .Site.Data.authors .Params.authors).twitter }}<meta name="twitter:creator" content="@{{ . }}" />{{ end }}{{ end }}
+    {{ with .Site.Params.twitter }}
+    <meta name="twitter:site" content="@{{ . }}" />{{ end }}
+    {{ if .Params.authors }}{{ with (index .Site.Data.authors .Params.authors).twitter }}
+    <meta name="twitter:creator" content="@{{ . }}" />{{ end }}{{ end }}
 </head>
+
 <body>
     <header class="hero is-primary">
         <div class="hero-head">
             <nav class="navbar">
                 <div class="container">
                     <div class="navbar-brand">
-                        <a href="{{ .Site.BaseURL | relURL }}" class="navbar-item{{ with .IsHome }} is-active{{ end }}">{{ with .Site.Params.navLogo }}<img class="inhabitu-navbar-logo" src="{{ "media/logos/" | relURL }}{{ . }}"> {{ end }}{{ .Site.Title }}</a>
+                        <a href="{{ .Site.BaseURL | relURL }}"
+                            class="navbar-item{{ with .IsHome }} is-active{{ end }}">{{ with .Site.Params.navLogo }}<img
+                                class="inhabitu-navbar-logo" src="{{ "media/logos/" | relURL }}{{ . }}">
+                            {{ end }}{{ .Site.Title }}</a>
                         <a class="navbar-burger" data-target="menu"><span></span><span></span><span></span></a>
                     </div>
                     <div class="navbar-menu" id="menu">
                         <div class="navbar-end">
                             {{ range .Site.Menus.main }}
                             {{ end }}
-                            <a class="navbar-item{{ if in .URL "/articles/" }} is-active{{ end }}" href="{{ "/articles/" | relURL }}">Articles</a>
-                            <a class="navbar-item{{ if in .URL "/tags/" }} is-active{{ end }}" href="{{ "/tags/" | relURL }}">Tags</a>
-                            <a class="navbar-item{{ if in .URL "/authors/" }} is-active{{ end }}" href="{{ "/authors/" | relURL }}">Authors</a>
-                            {{ with .Site.Params.Twitter }}<a class="navbar-item" href="https://twitter.com/{{ . }}" title="Twitter"><i class="inhabitu-twitter icon"></i><span class="is-hidden-tablet"> Twitter</span></a>{{ end }}
-                            {{ with .Site.Params.Github }}<a class="navbar-item" href="https://github.com/{{ . }}" title="GitHub"><i class="inhabitu-github icon"></i><span class="is-hidden-tablet"> GitHub</span></a>{{ end }}
+                            <a class="navbar-item{{ if in .URL "/articles/" }} is-active{{ end }}"
+                                href="{{ "/articles/" | relURL }}">Articles</a>
+                            <a class="navbar-item{{ if in .URL "/tags/" }} is-active{{ end }}"
+                                href="{{ "/tags/" | relURL }}">Tags</a>
+                            <a class="navbar-item{{ if in .URL "/authors/" }} is-active{{ end }}"
+                                href="{{ "/authors/" | relURL }}">Authors</a>
+                            {{ with .Site.Params.Twitter }}<a class="navbar-item" href="https://twitter.com/{{ . }}"
+                                title="Twitter"><i class="inhabitu-twitter icon"></i><span class="is-hidden-tablet">
+                                    Twitter</span></a>{{ end }}
+                            {{ with .Site.Params.Github }}<a class="navbar-item" href="https://github.com/{{ . }}"
+                                title="GitHub"><i class="inhabitu-github icon"></i><span class="is-hidden-tablet">
+                                    GitHub</span></a>{{ end }}
                         </div>
                     </div>
                 </div>
@@ -69,10 +87,15 @@
                 </div>
             </div>
             <p class="is-size-7"><a href="/privacy/">Privacy Policy</a></p>
-            <p class="is-size-7">Copyright © 2017-{{ .Site.LastChange.Format "2006" }} <a href="{{ .Site.BaseURL | relURL }}">{{ .Site.Title }}</a>{{ with .Site.Copyright }} · {{ . }}{{ end }}{{ if .Site.Params.License }}<br>
-                Original content released under the {{ if .Site.Params.LicenseURL }}<a href="{{ .Site.Params.LicenseURL }}">{{ .Site.Params.License }}</a>{{ else }}{{ .Site.Params.License }}{{ end }}{{ end }}</p>
+            <p class="is-size-7">Copyright © 2017-{{ .Site.LastChange.Format "2006" }} <a
+                    href="{{ .Site.BaseURL | relURL }}">{{ .Site.Title }}</a>{{ with .Site.Copyright }} ·
+                {{ . }}{{ end }}{{ if .Site.Params.License }}<br>
+                Original content released under the {{ if .Site.Params.LicenseURL }}<a
+                    href="{{ .Site.Params.LicenseURL }}">{{ .Site.Params.License }}</a>{{ else }}{{ .Site.Params.License }}{{ end }}{{ end }}
+            </p>
         </div>
     </footer>
     <script type="text/javascript" src="{{ "inhabitu.js" | relURL }}"></script>
 </body>
+
 </html>
