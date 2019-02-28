@@ -1,0 +1,10 @@
+<div class="card">
+    <header class="card-header">
+        {{ with .Get "title"}}<h6 class="card-header-title">{{ . }}</h6>{{ end }}
+    </header>
+    <div class="card-content">
+        <div class="content">
+            {{ .Inner | markdownify }}
+        </div>
+    </div>
+</div>
