@@ -4,11 +4,10 @@
 {{ end }}
 
 {{ define "main" }}
-{{ $paginator := .Paginate (where .Data.Pages "Section" "articles") }}
 <section class="section">
     <div class="content container">
-        {{ if $paginator.Pages }}
-        {{ range $index, $page := $paginator.Pages }}
+        {{ if .Paginator.Pages }}
+        {{ range $index, $page := .Paginator.Pages }}
         {{ if gt $index 0 }}
         <hr>
         {{ end }}

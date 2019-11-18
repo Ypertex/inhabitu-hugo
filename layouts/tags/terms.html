@@ -11,7 +11,8 @@
         <p>{{ .Site.Title }} articles have been labeled with the following tags:</p>
         <div class="tags">
             {{ range .Data.Terms.Alphabetical }}
-            <a class="tag is-rounded{{ if gt .Count (mul $bit 2) }} is-large{{ else }}{{ if gt .Count $bit }} is-medium{{ end }}{{ end }}" href="{{ "/tags" | relURL }}/{{ .Term | urlize }}">{{ .Term }}</a>
+            <a class="tag is-rounded{{ if gt .Count (mul $bit 2) }} is-large{{ else }}{{ if gt .Count $bit }} is-medium{{ end }}{{ end }}"
+                href="{{ "/tags" | relURL }}/{{ .Term | urlize }}">{{ .Page.Title }}</a>
             {{ end }}
         </div>
         {{ else }}

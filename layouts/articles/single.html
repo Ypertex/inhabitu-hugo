@@ -1,6 +1,8 @@
 {{ define "social-media-meta" }}
-{{ with .Params.description }}<meta property="og:description" content="{{ . }}" />{{ end }}
-{{ with .Params.cover }}<meta property="og:image" content="{{ "/media/" | absURL }}{{ . }}" />{{ end }}
+{{ with .Params.description }}
+<meta property="og:description" content="{{ . }}" />{{ end }}
+{{ with .Params.cover }}
+<meta property="og:image" content="{{ "/media/" | absURL }}{{ . }}" />{{ end }}
 {{ end }}
 
 {{ define "header" }}

@@ -1,15 +1,16 @@
 {{ define "header" }}
-<p class="title is-1 is-spaced">{{ if .Site.Params.mainLogo }}<img src="{{ "media/logos/" | relURL }}{{ .Site.Params.mainLogo }}" class="inhabitu-logo" alt="{{ .Site.Title }}" title="{{ .Site.Title }}">{{ else }}{{ .Site.Title }}{{ end }}</p>
+<p class="title is-1 is-spaced">{{ if .Site.Params.mainLogo }}<img
+        src="{{ "media/logos/" | relURL }}{{ .Site.Params.mainLogo }}" class="inhabitu-logo" alt="{{ .Site.Title }}"
+        title="{{ .Site.Title }}">{{ else }}{{ .Site.Title }}{{ end }}</p>
 {{ with .Site.Params.Description }}
 <p class="subtitle is-3">{{ . }}</p>
 {{ end }}
 {{ end }}
 
 {{ define "main" }}
-{{ $paginator := .Paginate (where .Data.Pages "Section" "articles") }}
-{{ if $paginator.Pages }}
-{{ if eq $paginator.PageNumber 1 }}
-{{ range first 1 $paginator.Pages }}
+{{ if .Paginator.Pages }}
+{{ if eq .Paginator.PageNumber 1 }}
+{{ range first 1 .Paginator.Pages }}
 <section class="section">
     <div class="content container">
         <h1 class="title is-2">{{ .Title }}</h1>
@@ -18,10 +19,10 @@
 </section>
 {{ partial "article-share" . }}
 {{ end }}
-{{ if gt $paginator.Pages 1 }}
+{{ if gt .Paginator.Pages 1 }}
 <section class="section">
     <div class="content container">
-        {{ range $index, $page := after 1 $paginator.Pages }}
+        {{ range $index, $page := after 1 .Paginator.Pages }}
         {{ if gt $index 0 }}
         <hr>
         {{ end }}
@@ -33,7 +34,7 @@
 {{ else }}
 <section class="section">
     <div class="content container">
-        {{ range $index, $page := $paginator.Pages }}
+        {{ range $index, $page := .Paginator.Pages }}
         {{ if gt $index 0 }}
         <hr>
         {{ end }}
@@ -53,5 +54,5 @@
         {{ partial "message-info" "No articles have been published yet." }}
     </div>
 </section>
-    {{ end }}
+{{ end }}
 {{ end }}

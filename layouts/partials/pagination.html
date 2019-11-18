@@ -1,5 +1,8 @@
 <nav class="container pagination is-small is-centered">
-    <a href="{{ with .Paginator.Prev }}{{ .URL }}{{ end }}" class="pagination-previous"{{ with not .Paginator.Prev }} disabled{{ end }}><span class="icon"><i class="inhabitu-chevron-left"></i></span> Previous page</a>
-    <a href="{{ with .Paginator.Next }}{{ .URL }}{{ end }}" class="pagination-next"{{ with not .Paginator.Next }} disabled{{ end }}>Next page <span class="icon"><i class="inhabitu-chevron-right"></i></span></a>
-    <span class="pagination-list is-hidden-mobile">Page {{ .Paginator.PageNumber }} of {{ .Paginator.TotalPages }}</span>
+    <a href="{{ with .Paginator.Prev }}{{ .URL }}{{ end }}" class="pagination-previous" {{ with not .Paginator.Prev }}
+        disabled{{ end }}><span class="icon"><i class="inhabitu-chevron-left"></i></span> Previous page</a>
+    <a href="{{ with .Paginator.Next }}{{ .URL }}{{ end }}" class="pagination-next" {{ with not .Paginator.Next }}
+        disabled{{ end }}>Next page <span class="icon"><i class="inhabitu-chevron-right"></i></span></a>
+    <span class="pagination-list is-hidden-mobile">Page {{ .Paginator.PageNumber }} of
+        {{ .Paginator.TotalPages }}</span>
 </nav>

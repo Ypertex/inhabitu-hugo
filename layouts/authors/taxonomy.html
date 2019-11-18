@@ -1,42 +1,47 @@
 {{ define "social-media-meta" }}
-{{ with (index .Site.Data.authors .Title).description }}<meta property="og:description" content="{{ . }}" />{{ end }}
-{{ with (index .Site.Data.authors .Title).cover }}<meta property="og:image" content="{{ "/media/authors/" | absURL }}{{ . }}" />{{ end }}
+<meta property="og:description" content="{{ .Description }}" />
+<meta property="og:image" content="{{ "/media/authors/" | absURL }}{{ .Params.cover }}" />
 {{ end }}
 
 {{ define "header" }}
-<p>{{ len .Data.Pages }} article{{ if ne (len .Data.Pages) 1 }}s{{ end }} <i class="inhabitu-quill-pen icon"></i> written by</p>
+<p>{{ len .Pages }} article{{ if ne (len .Pages) 1 }}s{{ end }} <i class="inhabitu-quill-pen icon"></i>
+    written by</p>
 <p class="title is-1">{{ .Title }}</p>
 {{ end }}
 
 {{ define "main" }}
-{{ $author := (index .Site.Data.authors .Title) }}
 <section class="section">
     <div class="content container">
         <span class="heading">About the author</span>
         <div class="inhabitu-overflow-bottom">
             <div class="card">
-                {{ with $author.cover }}
+                {{ with .Params.cover }}
                 <div class="card-image">
                     <img class="image" src="{{ "media/authors/" | relURL }}{{ . }}">
                 </div>
                 {{ end }}
                 <div class="card-content">
                     <div class="media">
-                        {{ with $author.image }}
-                        <img class="media-left image is-64x64 inhabitu-author" src="{{ "media/authors/" | relURL }}{{ . }}">
+                        {{ with .Params.image }}
+                        <img class="media-left image is-64x64 inhabitu-author"
+                            src="{{ "media/authors/" | relURL }}{{ . }}">
                         {{ end }}
                         <div class="media-content">
                             <strong>{{ .Title }}</strong>
-                            {{ with $author.description }}<p>{{ . }}</p>{{ end }}
-                            {{ with $author.location }}<p class="is-size-7"><i class="inhabitu-pin icon"></i>{{ . }}</p>{{ end }}
+                            {{ with .Description }}<p>{{ . }}</p>{{ end }}
+                            {{ with .Params.location }}<p class="is-size-7"><i class="inhabitu-pin icon"></i>{{ . }}</p>
+                            {{ end }}
                         </div>
                     </div>
                 </div>
-                {{ if or $author.twitter $author.github }}
+                {{ if or .Params.linkedin .Params.twitter .Params.github }}
                 <footer class="card-footer">
-                    {{ with $author.twitter }}<a class="card-footer-item" href="https://linkedin.com/in/{{ . }}"><i class="inhabitu-linkedin icon"></i></a>{{ end }}
-                    {{ with $author.twitter }}<a class="card-footer-item" href="https://twitter.com/{{ . }}"><i class="inhabitu-twitter icon"></i></a>{{ end }}
-                    {{ with $author.github }}<a class="card-footer-item" href="https://github.com/{{ . }}"><i class="inhabitu-github icon"></i></a>{{ end }}
+                    {{ with .Params.linkedin }}<a class="card-footer-item" href="https://linkedin.com/in/{{ . }}"><i
+                            class="inhabitu-linkedin icon"></i></a>{{ end }}
+                    {{ with .Params.twitter }}<a class="card-footer-item" href="https://twitter.com/{{ . }}"><i
+                            class="inhabitu-twitter icon"></i></a>{{ end }}
+                    {{ with .Params.github }}<a class="card-footer-item" href="https://github.com/{{ . }}"><i
+                            class="inhabitu-github icon"></i></a>{{ end }}
                 </footer>
                 {{ end }}
             </div>
@@ -55,5 +60,5 @@
     <div class="content container">
         {{ partial "pagination" . }}
     </div>
-</section>    
+</section>
 {{ end }}

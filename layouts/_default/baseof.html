@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ if not .IsHome }}{{ .Page.Title }} · {{ end }}{{ .Site.Title }}</title>
+    <title>{{ if not .IsHome }}{{ .Title }} · {{ end }}{{ .Site.Title }}</title>
     {{ with .Site.Params.Description }}
     <meta name="description" content="{{ . }}">{{ end }}
     {{ .Hugo.Generator }}
@@ -23,8 +23,8 @@
     <meta name="twitter:card" content="summary_large_image" />
     {{ with .Site.Params.twitter }}
     <meta name="twitter:site" content="@{{ . }}" />{{ end }}
-    {{ if .Params.authors }}{{ with (index .Site.Data.authors .Params.authors).twitter }}
-    <meta name="twitter:creator" content="@{{ . }}" />{{ end }}{{ end }}
+    {{ $taxo := "Authors" }}{{ range .Param $taxo }}{{ $name := . }}{{ with $.Site.GetPage (printf "/%s/%s" $taxo ($name | urlize)) }}
+    <meta name="twitter:creator" content="@{{ .Params.twitter }}" />{{ end }}{{ end }}
 </head>
 
 <body>

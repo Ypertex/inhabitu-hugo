@@ -1,31 +1,31 @@
 {{ define "social-media-meta" }}
-{{ with (index .Site.Data.tags .Title).description }}<meta property="og:description" content="{{ . }}" />{{ end }}
-{{ with (index .Site.Data.tags .Title).cover }}<meta property="og:image" content="{{ "/media/tags/" | absURL }}{{ . }}" />{{ end }}
+<meta property="og:description" content="{{ .Description }}" />
+<meta property="og:image" content="{{ "/media/tags/" | absURL }}{{ .Params.cover }}" />
 {{ end }}
 
 {{ define "header" }}
-<p>{{ len .Data.Pages }} article{{ if ne (len .Data.Pages) 1 }}s{{ end }} <i class="inhabitu-tags icon"></i> tagged with</p>
+<p>{{ len .Pages }} article{{ if ne (len .Pages) 1 }}s{{ end }} <i class="inhabitu-tags icon"></i> tagged with
+</p>
 <p class="title is-1">{{ .Title }}</p>
 {{ end }}
 
 {{ define "main" }}
-{{ $tag := (index .Site.Data.tags .Title) }}
 <section class="section">
     <div class="content container">
         <span class="heading">About the tag</span>
         <div class="inhabitu-overflow-bottom">
             <div class="card">
-                {{ with $tag.cover }}
                 <div class="card-image">
-                    <img class="image" src="{{ "media/tags/" | relURL }}{{ . }}">
+                    <img class="image" src="{{ "media/tags/" | relURL }}{{ .Params.cover }}">
                 </div>
-                {{ end }}
                 <div class="card-content">
                     <div class="media">
                         <div class="media-content">
                             <strong>{{ .Title }}</strong>
-                            {{ with $tag.description }}<p>{{ . }}</p>{{ end }}
-                            {{ if $tag.coverAttribution }}<p class="is-size-7 has-text-right">Image: {{ with $tag.coverAttributionURL }}<a href="{{ . }}">{{ end }}{{ $tag.coverAttribution }}</a></p>{{ end }}
+                            <p>{{ .Description }}</p>
+                            {{ if .Params.coverAttribution }}<p class="is-size-7 has-text-right">Image:
+                                <a href="{{ .Params.coverAttributionURL }}">{{ .Params.coverAttribution }}</a></p>
+                            {{ end }}
                         </div>
                     </div>
                 </div>
@@ -43,5 +43,5 @@
     <div class="content container">
         {{ partial "pagination" . }}
     </div>
-</section>    
+</section>
 {{ end }}
