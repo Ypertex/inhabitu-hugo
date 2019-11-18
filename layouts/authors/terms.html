@@ -13,7 +13,7 @@
         <div class="tags">
             {{ range .Data.Terms.Alphabetical }}
             <a class="tag is-rounded{{ if gt .Count (mul $bit 2) }} is-large{{ else }}{{ if gt .Count $bit }} is-medium{{ end }}{{ end }}"
-                href="{{ "/authors" | relURL }}/{{ .Term }}">{{ .Page.Params.name }}</a>
+                href="{{ "/authors" | relURL }}/{{ .Term }}">{{ .Page.Title }}</a>
             {{ end }}
         </div>
         {{ else }}
