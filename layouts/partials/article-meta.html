@@ -1,11 +1,17 @@
 <div class="level is-tablet">
     <div class="level-left">
         <div class="media level-item">
-            {{ $taxo := "Authors" }}{{ range .Param $taxo }}{{ $name := . }}{{ with $.Site.GetPage (printf "/%s/%s" $taxo ($name | urlize)) }}
+            {{ $taxo := "Authors" }}
+            {{ range .Param $taxo }}
+            {{ $name := . }}
+            {{ with $.Site.GetPage (printf "/%s/%s" $taxo ($name | urlize)) }}
+            {{ with .Params.image }}
             <div class="media-left image is-32x32">
-                <img class="inhabitu-author" src="{{ "media/authors/" | relURL }}{{ .Params.image }}">
+                <img class="inhabitu-author" src="{{ $.Site.Params.cloudinaryURL }}t_mediumAvatar/{{ . }}">
             </div>
-            {{ end }}{{ end }}
+            {{ end }}
+            {{ end }}
+            {{ end }}
             <small class="media-content">
                 {{ range $index, $name := .Param $taxo }}{{- if gt $index 0 }}/{{ end -}}{{- with $.Site.GetPage (printf "/%s/%s" $taxo ($name | urlize)) }}
                 <strong><a href="{{ .Permalink | relURL }}">{{ $name }}</a></strong>
