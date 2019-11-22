@@ -17,14 +17,14 @@
             <div class="card">
                 {{ with .Params.cover }}
                 <div class="card-image">
-                    <img class="image" src="{{ $.Site.Params.cloudinaryURL }}t_cover/{{ . }}" height="185" width="740">
+                    <img class="image" src="{{ $.Site.Params.cloudinaryURL }}ar_32:9,c_fill,g_auto,q_auto,w_740/{{ . }}">
                 </div>
                 {{ end }}
                 <div class="card-content">
                     <div class="media">
                         {{ with .Params.image }}
                         <img class="media-left image is-64x64 inhabitu-author"
-                            src="{{ $.Site.Params.cloudinaryURL }}t_mediumAvatar/{{ . }}">
+                            src="{{ $.Site.Params.cloudinaryURL }}c_thumb,dpr_auto,g_face,h_64,q_auto,w_64/{{ . }}">
                         {{ end }}
                         <div class="media-content">
                             <strong>{{ .Title }}</strong>

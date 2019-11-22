@@ -7,7 +7,7 @@
             {{ with $.Site.GetPage (printf "/%s/%s" $taxo ($name | urlize)) }}
             {{ with .Params.image }}
             <div class="media-left image is-32x32">
-                <img class="inhabitu-author" src="{{ $.Site.Params.cloudinaryURL }}t_mediumAvatar/{{ . }}">
+                <img class="inhabitu-author" src="{{ $.Site.Params.cloudinaryURL }}c_thumb,dpr_auto,g_face,h_32,q_auto,w_32/{{ . }}">
             </div>
             {{ end }}
             {{ end }}
