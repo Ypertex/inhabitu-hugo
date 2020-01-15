@@ -1,5 +1,5 @@
 <article>
-    <h1 class="title is-3"><a href="{{ .Permalink | relURL }}">{{ .Title }}</a></h1>
+    <h1 class="title is-3"><a href="{{ .Permalink | relURL }}">{{ title .Title }}</a></h1>
     <p class="content">{{ .Description }} <small class="is-size-7"><strong><a
                     href="{{ .Permalink | relURL }}">Continue&nbsp;reading</a></strong></small></p>
     {{ partial "article-meta.html" . }}

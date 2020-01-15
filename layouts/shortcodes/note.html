@@ -1,7 +1,9 @@
-<div class="message{{ with .Get "class" }} {{ . }}{{ end }}">
-    <h6 class="message-header">{{ with .Get "title"}}{{ . }}{{ else }}Note<i class="inhabitu-info icon"></i>{{ end }}
+{{ if .Get "hr-top" }}<hr>{{ end }}
+<div class="message{{ with .Get "class" }} {{ . }}{{ end }}{{ if .Get "hr-top" }}{{ else}} inhabitu-overflow-top{{ end }}{{ if .Get "hr-bottom" }}{{ else}} inhabitu-overflow-bottom{{ end }}">
+    <h6 class="message-header">{{ with .Get "title"}}{{ htmlUnescape . }}{{ else }}Note<i class="inhabitu-info icon"></i>{{ end }}
     </h6>
     <div class="message-body">
         {{ .Inner | markdownify }}
     </div>
 </div>
+{{ if .Get "hr-bottom" }}<hr>{{ end }}
