@@ -8,7 +8,7 @@
     <title>{{ if not .IsHome }}{{ .Title }} · {{ end }}{{ .Site.Title }}</title>
     {{ with .Site.Params.Description }}
     <meta name="description" content="{{ . }}">{{ end }}
-    {{ .Hugo.Generator }}
+    {{ hugo.Generator }}
     <link rel="shortcut icon" href="{{ "favicon.ico" | relURL }}">
     {{ $style := resources.Get "inhabitu-scss/inhabitu.scss" | toCSS }}
     <link rel="stylesheet" type="text/css" href="{{ $style.RelPermalink }}">
