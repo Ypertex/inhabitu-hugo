@@ -16,19 +16,16 @@
     </div>
 </section>
 {{ partial "article-share" . }}
-{{ if or .NextInSection .PrevInSection }}
+{{ $related := .Site.RegularPages.Related . | first 2 }}
+{{ if $related }}
 <section class="section">
     <div class="content container">
-        {{ with .NextInSection }}
-        <span class="heading">Next article</span>
-        {{ partial "article-index" . }}
-        {{ end }}
-        {{ if and .NextInSection .PrevInSection }}
+        {{ range $index, $article := $related }}
+        {{ if gt $index 0 }}
         <hr>
         {{ end }}
-        {{ with .PrevInSection }}
-        <span class="heading">Previous article</span>
-        {{ partial "article-index" . }}
+        <span class="heading">Recommended article</span>
+        {{ partial "article-index.html" . }}
         {{ end }}
     </div>
 </section>

@@ -26,7 +26,7 @@
     <div class="level-right">
         {{ range . }}
         <a class="level-item tag is-rounded" href="{{ "tags/" | relURL }}{{ . | urlize }}"><span class="icon"><i
-                    class="inhabitu-tag"></i></span> {{ . }}</a>
+                    class="inhabitu-tag"></i></span> {{ . | title }}</a>
         {{ end }}
     </div>
     {{ end }}

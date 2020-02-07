@@ -5,21 +5,21 @@
             <div class="level is-mobile">
                 <div class="level-item">
                     <a class="tag icon is-large is-primary is-rounded"
-                        href="https://twitter.com/intent/tweet?text={{ safeHTML .Title }}&amp;url={{ absURL .URL }}"
+                        href="https://twitter.com/intent/tweet?text={{ safeHTML .Title }}&amp;url={{ .Permalink }}"
                         title="Twitter"
                         onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;"><i
                             class="inhabitu-twitter"></i></a>
                 </div>
                 <div class="level-item">
                     <a class="tag icon is-large is-primary is-rounded"
-                        href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ absURL .URL }}&amp;title={{ safeHTML .Title }}&amp;source={{ safeHTML .Site.Title }}"
+                        href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ .Permalink }}&amp;title={{ safeHTML .Title }}&amp;source={{ safeHTML .Site.Title }}"
                         title="LinkedIn"
                         onclick="window.open(this.href, 'linkedin-share', 'width=490,height=530');return false;"><i
                             class="inhabitu-linkedin"></i></a>
                 </div>
                 <div class="level-item">
                     <a class="tag icon is-large is-primary is-rounded"
-                        href="https://www.facebook.com/sharer/sharer.php?u={{ absURL .URL }}" title="Facebook"
+                        href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink }}" title="Facebook"
                         onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;"><i
                             class="inhabitu-facebook"></i></a>
                 </div>

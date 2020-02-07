@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="{{ "favicon.ico" | relURL }}">
     {{ $style := resources.Get "inhabitu-scss/inhabitu.scss" | toCSS }}
     <link rel="stylesheet" type="text/css" href="{{ $style.RelPermalink }}">
-    <meta property="og:url" content="{{ .URL | absURL }}" />
+    <meta property="og:url" content="{{ .Permalink }}" />
     <meta property="og:title" content="{{ if not .IsHome }}{{ .Page.Title }} · {{ end }}{{ .Site.Title }}" />
     {{ block "social-media-meta" . }}
     {{ with .Site.Params.description }}
@@ -43,11 +43,11 @@
                         <div class="navbar-end">
                             {{ range .Site.Menus.main }}
                             {{ end }}
-                            <a class="navbar-item{{ if in .URL "/articles/" }} is-active{{ end }}"
+                            <a class="navbar-item{{ if in .RelPermalink "/articles/" }} is-active{{ end }}"
                                 href="{{ "/articles/" | relURL }}">Articles</a>
-                            <a class="navbar-item{{ if in .URL "/tags/" }} is-active{{ end }}"
+                            <a class="navbar-item{{ if in .RelPermalink "/tags/" }} is-active{{ end }}"
                                 href="{{ "/tags/" | relURL }}">Tags</a>
-                            <a class="navbar-item{{ if in .URL "/authors/" }} is-active{{ end }}"
+                            <a class="navbar-item{{ if in .RelPermalink "/authors/" }} is-active{{ end }}"
                                 href="{{ "/authors/" | relURL }}">Authors</a>
                             {{ with .Site.Params.Twitter }}<a class="navbar-item" href="https://twitter.com/{{ . }}"
                                 title="Twitter"><i class="inhabitu-twitter icon"></i><span class="is-hidden-tablet">
