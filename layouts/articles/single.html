@@ -1,8 +1,10 @@
 {{ define "social-media-meta" }}
-{{ with .Params.description }}
-<meta property="og:description" content="{{ . }}" />{{ end }}
+{{ with .Summary }}
+<meta property="og:description" content="{{ . }}" />
+{{ end }}
 {{ with .Params.cover }}
-<meta property="og:image" content="{{ "/media/" | absURL }}{{ . }}" />{{ end }}
+<meta property="og:image" content="{{ if findRE "http" . }}{{ . }}{{ else }}{{ "/media/" | absURL }}{{ . }}{{ end }}" />
+{{ end }}
 {{ end }}
 
 {{ define "header" }}

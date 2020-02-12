@@ -1,5 +1,5 @@
 {{ define "social-media-meta" }}
-<meta property="og:description" content="{{ .Description }}" />
+<meta property="og:description" content="{{ .Summary }}" />
 <meta property="og:image" content="{{ "/media/authors/" | absURL }}{{ .Params.cover }}" />
 {{ end }}
 
@@ -29,7 +29,7 @@
                         {{ end }}
                         <div class="media-content">
                             <strong>{{ .Title }}</strong>
-                            {{ with .Description }}<p>{{ . }}</p>{{ end }}
+                            {{ with .Summary }}<p>{{ . }}</p>{{ end }}
                             {{ with .Params.location }}<p class="is-size-7"><i class="inhabitu-pin icon"></i>{{ . }}</p>
                             {{ end }}
                         </div>

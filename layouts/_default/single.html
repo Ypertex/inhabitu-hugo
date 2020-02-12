@@ -1,0 +1,12 @@
+{{ define "header" }}
+<h1 class="title is-1">{{ title .Title }}</h1>
+{{ end }}
+
+{{ define "main" }}
+<section class="section">
+    <div class="content container">
+        <p class="is-size-5">{{ .Summary }}</p>
+        {{ .Content }}
+    </div>
+</section>
+{{ end }}

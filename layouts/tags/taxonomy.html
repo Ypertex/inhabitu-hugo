@@ -1,5 +1,5 @@
 {{ define "social-media-meta" }}
-<meta property="og:description" content="{{ .Description }}" />
+<meta property="og:description" content="{{ .Summary }}" />
 <meta property="og:image" content="{{ "/media/tags/" | absURL }}{{ .Params.cover }}" />
 {{ end }}
 
@@ -22,7 +22,7 @@
                     <div class="media">
                         <div class="media-content">
                             <strong>{{ .Title }}</strong>
-                            <p>{{ .Description }}</p>
+                            <p>{{ .Summary }}</p>
                             {{ if .Params.coverAttribution }}<p class="is-size-7 has-text-right">Image:
                                 <a href="{{ .Params.coverAttributionURL }}">{{ .Params.coverAttribution }}</a></p>
                             {{ end }}
